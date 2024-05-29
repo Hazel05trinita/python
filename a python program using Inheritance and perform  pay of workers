@@ -1,0 +1,31 @@
+class Worker:
+def init (self, name, salary_rate):
+self.name = name
+self.salary_rate = salary_rate
+def compute_pay(self, hours):
+pass
+class DailyWorker(Worker):
+def compute_pay(self, days_worked):
+return self.salary_rate * days_worked
+class SalariedWorker(Worker):
+def compute_pay(self, hours_worked):
+weekly_hours = min(hours_worked, 40) # Cap hours at 40
+return self.salary_rate * weekly_hours
+def main():
+name = input("Enter worker's name: ")
+salary_rate = float(input("Enter worker's hourly or daily rate: "))
+worker_type = input("Enter worker type (Daily/Salaried): ").lower()
+if worker_type == "daily":
+days_worked = int(input("Enter number of days worked: "))
+worker = DailyWorker(name, salary_rate)
+pay = worker.compute_pay(days_worked)
+elif worker_type == "salaried":
+hours_worked = int(input("Enter number of hours worked: "))
+worker = SalariedWorker(name, salary_rate)
+pay = worker.compute_pay(hours_worked)
+else:
+print("Invalid worker type")
+return
+print(f"{worker.name}'s pay for the week: ${pay:.2f}")
+if name == " main ":
+main()
