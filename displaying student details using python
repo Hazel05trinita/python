@@ -1,0 +1,36 @@
+student_list = []
+for _ in range(5):
+    name = input("Enter student name: ")
+    regno = input("Enter student registration number: ")
+    cgpa = float(input("Enter student CGPA: "))
+    
+    student_list.append((name, regno, cgpa))
+while True:
+    print("\nMenu:")
+    print("1. Sort by Name")
+    print("2. Sort by Registration Number")
+    print("3. Sort by CGPA")
+    print("4. Exit")
+    
+    choice = input("Enter your choice: ")
+    
+    if choice == '1':
+        sorted_by_name = sorted(student_list, key=lambda student: student[0])
+        print("\nSorted by Name:")
+        for student in sorted_by_name:
+            print(student)
+    elif choice == '2':
+        sorted_by_regno = sorted(student_list, key=lambda student: student[1])
+        print("\nSorted by Registration Number:")
+        for student in sorted_by_regno:
+            print(student)
+    elif choice == '3':
+        sorted_by_cgpa = sorted(student_list, key=lambda student: student[2], reverse=True)
+        print("\nSorted by CGPA (descending order):")
+        for student in sorted_by_cgpa:
+            print(student)
+    elif choice == '4':
+        print("Exiting program. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please enter a valid option.")
