@@ -1,0 +1,72 @@
+class Employee:
+def init (self, name, basic_salary, da_percent, hra_percent, tax_percent, epf):
+self.name = name
+self.basic_salary = basic_salary
+self.da_percent = da_percent
+self.hra_percent = hra_percent
+self.tax_percent = tax_percent
+self.epf = epf
+def calculate_gross_salary(self):
+da_amount = self.basic_salary * (self.da_percent / 100)
+hra_amount = self.basic_salary * (self.hra_percent / 100)
+gross_salary = self.basic_salary + da_amount + hra_amount
+return gross_salary
+def calculate_net_salary(self):
+gross_salary = self.calculate_gross_salary()
+tax_amount = gross_salary * (self.tax_percent / 100)
+net_salary = gross_salary - tax_amount - self.epf
+return net_salary
+def calculate_tax(self):
+gross_salary = self.calculate_gross_salary()
+tax_amount = gross_salary * (self.tax_percent / 100)
+return tax_amount
+def print_pay_details(self):
+gross_salary = self.calculate_gross_salary()
+net_salary = self.calculate_net_salary()
+tax_amount = self.calculate_tax()
+print("Pay Details for", self.name)
+print("Basic Salary:", self.basic_salary)
+print("DA Pay:", self.da_percent, "%")
+print("HRA:", self.hra_percent, "%")
+print("Gross Salary:", gross_salary)
+print("Tax Amount:", tax_amount)
+print("EPF:", self.epf)
+print("Net Salary:", net_salary)
+class Manager(Employee):
+def init (self, name):
+super(). init (name, 30000, 95, 20, 25, 3000)
+class Engineer(Employee):
+def init (self, name):
+super(). init (name, 20000, 80, 15, 15, 2000)
+def menu():
+print("Menu:")
+print("a) Calculate Gross Salary")
+print("b) Calculate Net Salary")
+print("c) Calculate Tax")
+print("d) Print the Pay Details")
+def main():
+name = input("Enter employee name: ")
+designation = input("Enter employee designation (Manager/Engineer): ")
+if designation.lower() == "manager":
+emp = Manager(name)
+elif designation.lower() == "engineer":
+emp = Engineer(name)
+else:
+print("Invalid designation.")
+return
+while True:
+menu()
+choice = input("Enter your choice (a/b/c/d): ")
+if choice.lower() == 'a':
+print("Gross Salary:", emp.calculate_gross_salary())
+elif choice.lower() == 'b':
+print("Net Salary:", emp.calculate_net_salary())
+elif choice.lower() == 'c':
+print("Tax Amount:", emp.calculate_tax())
+elif choice.lower() == 'd':
+emp.print_pay_details()
+else:
+print("Invalid choice.")
+break
+if name == " main ":
+main()
